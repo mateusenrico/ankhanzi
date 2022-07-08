@@ -11,9 +11,12 @@ fn read_file(path: &str) -> Vec<cedict::DictEntry> {
     cedict::parse_reader(file).collect::<Vec<cedict::DictEntry>>()
 }
 
+// TODO: acrescentar documentação
 fn main() {
     let style = std::env::args().nth(1).expect("Missing style"); // Values: map or list
 
     let dict = Dict::new(read_file(READ_PATH), WRITE_NAME, &style);
+
+    // TODO: Adicionar funcionalidade de acrescentar o que já tem no deck do Anki
     dict.export();
 }
