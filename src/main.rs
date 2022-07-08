@@ -12,6 +12,9 @@ fn read_file(path: &str) -> Vec<cedict::DictEntry> {
 }
 
 fn main() {
-    let dict = Dict::new(read_file(READ_PATH), WRITE_NAME, "map", "@|@");
+    let style = std::env::args().nth(1).expect("Missing style");
+    let pattern = std::env::args().nth(2).expect("Missing style");
+
+    let dict = Dict::new(read_file(READ_PATH), WRITE_NAME, &style, &pattern);
     dict.export();
 }
