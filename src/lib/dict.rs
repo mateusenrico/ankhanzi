@@ -1,6 +1,6 @@
+use indicatif::ProgressBar;
 use serde::{Deserialize, Serialize};
 use std::{collections::HashMap, path::Path};
-use indicatif::ProgressBar;
 
 use crate::lib::pbar::BarPreCreate;
 
@@ -13,9 +13,9 @@ impl OutStyle {
     fn new(name: &str, out: &str) -> OutStyle {
         let name = name.trim().to_uppercase();
 
-        if out.trim().to_lowercase() == "list" {
+        if out.trim().to_lowercase() == "list" || out.trim().to_lowercase().starts_with("l") {
             OutStyle::List(format!("List-{}.json", name))
-        } else if out == "map" {
+        } else if out == "map" || out.trim().to_lowercase().starts_with("m") {
             OutStyle::Map(format!("Map-{}.json", name))
         } else {
             panic!("Output choice error")
@@ -47,18 +47,16 @@ pub struct Dict {
     pub list: HashMap<String, Hanzi>,
     bar: ProgressBar,
     out: OutStyle,
-    pattern: String,
 }
 
 impl Dict {
-    pub fn new(list: Vec<cedict::DictEntry>, name: &str, out: &str, pattern: &str) -> Dict {
+    pub fn new(list: Vec<cedict::DictEntry>, name: &str, out: &str) -> Dict {
         let pb = ProgressBar::create(list.len() as u64);
 
         let mut dict = Dict {
             list: HashMap::new(),
             bar: pb,
             out: OutStyle::new(name, out),
-            pattern: pattern.to_owned(),
         };
 
         list.into_iter().for_each(|e| {
@@ -70,7 +68,7 @@ impl Dict {
     }
 
     pub fn populate(&mut self, e: cedict::DictEntry) {
-        let key = format!("{}{}{}", e.traditional(), self.pattern, e.simplified());
+        let key = format!("{}#|@|#{}", e.traditional(), e.simplified());
 
         let def = Entry {
             pinyin: e.pinyin().to_string(),
@@ -104,7 +102,7 @@ impl Dict {
 
     pub fn export(self) {
         std::fs::write(
-            Path::new(&format!("./out/{}", &self.out.unwrap())),
+            Path::new(&format!("./static/out/{}", &self.out.unwrap())),
             self.json(),
         )
         .expect("Unable to write");
