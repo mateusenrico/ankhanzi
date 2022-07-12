@@ -1,4 +1,7 @@
 mod pbar;
-mod dict;
+mod handler;
+mod filepath;
+mod hanzi;
 
-pub use dict::Dict;
+pub use handler::Dict;
+pub use hanzi::*;
