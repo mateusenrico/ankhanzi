@@ -1,6 +1,6 @@
-mod pbar;
+mod addons;
+
 mod handler;
-mod filepath;
 mod hanzi;
 
 pub use handler::Dict;

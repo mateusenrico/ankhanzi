@@ -1,12 +1,14 @@
-use crate::lib::{filepath::RdFile, hanzi::*, pbar::BarPreCreate};
+use crate::lib::{
+    addons::{BarPreCreate, RdFile},
+    hanzi::*,
+};
 
 use indicatif::ProgressBar;
 use std::{collections::HashMap, fs::File, io::Read, path::Path};
-use uuid::Uuid;
 // use uuid::{uuid, Uuid};
 
-static PATH_DICT: &'static str = "./static/saida.json";
-static WRITE_NAME: &'static str = "DICT-3";
+static PATH_DICT: &'static str = "./static/out/DICT-4.json";
+static WRITE_NAME: &'static str = "DICT-4";
 
 pub struct Dict {
     pub list: Vec<Hanzi>,
