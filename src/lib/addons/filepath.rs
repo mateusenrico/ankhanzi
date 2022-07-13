@@ -7,4 +7,3 @@ pub trait RdFile {
 }
 
 impl RdFile for File {}
-

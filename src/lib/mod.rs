@@ -1,7 +1,4 @@
 mod addons;
+mod dictionary;
 
-mod handler;
-mod hanzi;
-
-pub use handler::Dict;
-pub use hanzi::*;
+pub use dictionary::Dict;
