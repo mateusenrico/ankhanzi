@@ -3,6 +3,17 @@
 version = 3
 
 [[package]]
+name = "ankhanzi-server"
+version = "0.1.0"
+dependencies = [
+ "cedict",
+ "indicatif",
+ "serde",
+ "serde_json",
+ "uuid",
+]
+
+[[package]]
 name = "cedict"
 version = "0.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -44,17 +55,6 @@ dependencies = [
  "cfg-if",
  "libc",
  "wasi",
-]
-
-[[package]]
-name = "hanzi"
-version = "0.1.0"
-dependencies = [
- "cedict",
- "indicatif",
- "serde",
- "serde_json",
- "uuid",
 ]
 
 [[package]]
