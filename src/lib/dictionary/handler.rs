@@ -6,7 +6,6 @@ use std::{fs::File, io::Read, path::Path};
 static PATH_DICT: &'static str = "./static/DICTIONARY.json";
 
 pub struct Dict {
-    pub count: u64,
     pub list: Vec<Hanzi>,
     pub exportable: bool,
 }
@@ -18,7 +17,6 @@ impl Dict {
 
         let list: Vec<Hanzi> = serde_json::from_str(&data).expect("Unable to read");
         let dict = Dict {
-            count: list.len() as u64,
             list,
             exportable: true,
         };
