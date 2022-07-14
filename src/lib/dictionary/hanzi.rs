@@ -28,7 +28,8 @@ pub static DECKS: phf::Map<&'static str, &'static str> = phf_map! {
     "HSK3.5" => "Ankhanzi::HSK-v2021::HSK3.5",
     "HSK3.6" => "Ankhanzi::HSK-v2021::HSK3.6",
     "HSK3.7-9" => "Ankhanzi::HSK-v2021::HSK3.7-9",
-    "OWN" => "Ankhanzi::OWN"
+    "OWN" => "Ankhanzi::OWN",
+    "UNKOWN" => "Ankhanzi::UNKNOWN"
 };
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
@@ -156,6 +157,8 @@ impl Hanzi {
             DECKS.get("HSK3.6").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.7-9".to_string()) {
             DECKS.get("HSK3.7-9").unwrap().to_string()
+        } else if self.tags.len() == 0 {
+            DECKS.get("UNKOWN").unwrap().to_string()
         } else {
             DECKS.get("OWN").unwrap().to_string()
         }
@@ -163,11 +166,17 @@ impl Hanzi {
 
     pub fn to_anki(&self) -> serde_json::Value {
         let deck = self.find_deck();
+        let tags = if self.tags.len() != 0 {
+            self.tags.clone()
+        } else {
+            vec!["OWN.Unknown".to_string()]
+        };
+        
         json!({
                 "deckName": deck,
                 "modelName": "Ankhanzi",
                 "fields": self.anki_note(),
-                "tags": self.tags,
+                "tags": tags,
                 "options": {
                     "allowDuplicate": false,
                     "duplicateScope": "deck",
