@@ -1,36 +1,7 @@
-use std::collections::HashMap;
-
-use phf::phf_map;
+use crate::lib::Dict;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
-
-pub static DECKS: phf::Map<&'static str, &'static str> = phf_map! {
-    "ROOT" => "Ankhanzi",
-    "HSK-v2002" => "Ankhanzi::HSK-v2002",
-    "HSK.1" => "Ankhanzi::HSK-v2002::HSK.1",
-    "HSK.2" => "Ankhanzi::HSK-v2002::HSK.2",
-    "HSK.3" => "Ankhanzi::HSK-v2002::HSK.3",
-    "HSK.4" => "Ankhanzi::HSK-v2002::HSK.4",
-    "HSK.5" => "Ankhanzi::HSK-v2002::HSK.5",
-    "HSK.6" => "Ankhanzi::HSK-v2002::HSK.6",
-    "NPCR" => "Ankhanzi::NPCR",
-    "NPCR.1" => "Ankhanzi::NPCR::NPCR.1",
-    "NPCR.2" => "Ankhanzi::NPCR::NPCR.2",
-    "NPCR.3" => "Ankhanzi::NPCR::NPCR.3",
-    "NPCR.4" => "Ankhanzi::NPCR::NPCR.4",
-    "NPCR.5" => "Ankhanzi::NPCR::NPCR.5",
-    "NPCR.6" => "Ankhanzi::NPCR::NPCR.6",
-    "HSK-v2021" => "Ankhanzi::HSK-v2021",
-    "HSK3.1" => "Ankhanzi::HSK-v2021::HSK3.1",
-    "HSK3.2" => "Ankhanzi::HSK-v2021::HSK3.2",
-    "HSK3.3" => "Ankhanzi::HSK-v2021::HSK3.3",
-    "HSK3.4" => "Ankhanzi::HSK-v2021::HSK3.4",
-    "HSK3.5" => "Ankhanzi::HSK-v2021::HSK3.5",
-    "HSK3.6" => "Ankhanzi::HSK-v2021::HSK3.6",
-    "HSK3.7-9" => "Ankhanzi::HSK-v2021::HSK3.7-9",
-    "OWN" => "Ankhanzi::OWN",
-    "UNKOWN" => "Ankhanzi::UNKNOWN"
-};
+use std::collections::HashMap;
 
 #[derive(Serialize, Deserialize, Debug, Clone)]
 pub struct Entry {
@@ -120,47 +91,47 @@ impl Hanzi {
 
     fn find_deck(&self) -> String {
         if self.tags.contains(&"HSK.1".to_string()) {
-            DECKS.get("HSK.1").unwrap().to_string()
+            Dict::DECKS.get("HSK.1").unwrap().to_string()
         } else if self.tags.contains(&"HSK.2".to_string()) {
-            DECKS.get("HSK.2").unwrap().to_string()
+            Dict::DECKS.get("HSK.2").unwrap().to_string()
         } else if self.tags.contains(&"HSK.3".to_string()) {
-            DECKS.get("HSK.3").unwrap().to_string()
+            Dict::DECKS.get("HSK.3").unwrap().to_string()
         } else if self.tags.contains(&"HSK.4".to_string()) {
-            DECKS.get("HSK.4").unwrap().to_string()
+            Dict::DECKS.get("HSK.4").unwrap().to_string()
         } else if self.tags.contains(&"HSK.5".to_string()) {
-            DECKS.get("HSK.5").unwrap().to_string()
+            Dict::DECKS.get("HSK.5").unwrap().to_string()
         } else if self.tags.contains(&"HSK.6".to_string()) {
-            DECKS.get("HSK.6").unwrap().to_string()
+            Dict::DECKS.get("HSK.6").unwrap().to_string()
         } else if self.tags.contains(&"NPCR.1".to_string()) {
-            DECKS.get("NPCR.1").unwrap().to_string()
+            Dict::DECKS.get("NPCR.1").unwrap().to_string()
         } else if self.tags.contains(&"NPCR.2".to_string()) {
-            DECKS.get("NPCR.2").unwrap().to_string()
+            Dict::DECKS.get("NPCR.2").unwrap().to_string()
         } else if self.tags.contains(&"NPCR.3".to_string()) {
-            DECKS.get("NPCR.3").unwrap().to_string()
+            Dict::DECKS.get("NPCR.3").unwrap().to_string()
         } else if self.tags.contains(&"NPCR.4".to_string()) {
-            DECKS.get("NPCR.4").unwrap().to_string()
+            Dict::DECKS.get("NPCR.4").unwrap().to_string()
         } else if self.tags.contains(&"NPCR.5".to_string()) {
-            DECKS.get("NPCR.5").unwrap().to_string()
+            Dict::DECKS.get("NPCR.5").unwrap().to_string()
         } else if self.tags.contains(&"NPCR.6".to_string()) {
-            DECKS.get("NPCR.6").unwrap().to_string()
+            Dict::DECKS.get("NPCR.6").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.1".to_string()) {
-            DECKS.get("HSK3.1").unwrap().to_string()
+            Dict::DECKS.get("HSK3.1").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.2".to_string()) {
-            DECKS.get("HSK3.2").unwrap().to_string()
+            Dict::DECKS.get("HSK3.2").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.3".to_string()) {
-            DECKS.get("HSK3.3").unwrap().to_string()
+            Dict::DECKS.get("HSK3.3").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.4".to_string()) {
-            DECKS.get("HSK3.4").unwrap().to_string()
+            Dict::DECKS.get("HSK3.4").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.5".to_string()) {
-            DECKS.get("HSK3.5").unwrap().to_string()
+            Dict::DECKS.get("HSK3.5").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.6".to_string()) {
-            DECKS.get("HSK3.6").unwrap().to_string()
+            Dict::DECKS.get("HSK3.6").unwrap().to_string()
         } else if self.tags.contains(&"HSK3.7-9".to_string()) {
-            DECKS.get("HSK3.7-9").unwrap().to_string()
+            Dict::DECKS.get("HSK3.7-9").unwrap().to_string()
         } else if self.tags.len() == 0 {
-            DECKS.get("UNKOWN").unwrap().to_string()
+            Dict::DECKS.get("UNKOWN").unwrap().to_string()
         } else {
-            DECKS.get("OWN").unwrap().to_string()
+            Dict::DECKS.get("OWN").unwrap().to_string()
         }
     }
 
@@ -171,7 +142,7 @@ impl Hanzi {
         } else {
             vec!["OWN.Unknown".to_string()]
         };
-        
+
         json!({
                 "deckName": deck,
                 "modelName": "Ankhanzi",
@@ -188,5 +159,13 @@ impl Hanzi {
                 }
             }
         )
+    }
+
+    pub fn bson(&self) -> bson::Bson {
+        bson::to_bson(&self).expect("Unable to parse")
+    }
+
+    pub fn json(&self) -> String {
+        serde_json::to_string(&self).expect("Unable to parse Hanzi")
     }
 }

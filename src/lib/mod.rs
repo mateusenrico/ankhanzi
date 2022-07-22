@@ -1,8 +1,5 @@
 mod addons;
-mod dictionary;
-mod connecter;
+pub mod dictionary;
 
-pub use dictionary::Dict;
-pub use dictionary::DECKS;
 pub use addons::BarPreCreate;
-pub use connecter::AnkiConnect;
+pub use dictionary::{AnkiConnect, Dict};
